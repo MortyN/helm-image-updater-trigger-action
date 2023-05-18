@@ -1,0 +1,21 @@
+# workflow triggers
+on: [push]
+jobs:
+  helm_appversion_bumper_trigger:
+    runs-on: ubuntu-latest
+    name: Helm Chart Bump AppVersion - Trigger
+    steps:
+      - name: Build Image #Replicating output of a build pipeline with semver
+        run: IMAGEVERSION=$(echo $(( $RANDOM % 10 + 1 )).$(( $RANDOM % 10 + 1 )).$(( $RANDOM % 10 + 1 )))
+
+      - name: Helm Chart Bump AppVersion
+        uses: ./ # Uses an action in the root directory for testing
+        id: triggerappversionbump
+        with:
+          git-repo: MortyN/helm-repo
+          chart-location: charts/bettergrafana/Chart.yaml
+          appversion: ${{ env.IMAGEVERSION }}
+          actions-pat-key: ${{ secrets.ACTIONS_PAT_KEY }}
+      # Use the output from the `hello` step
+      - name: Output
+        run: echo "${{ steps.triggerappversionbump.outputs.result }}"
