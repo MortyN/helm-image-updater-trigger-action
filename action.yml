@@ -32,6 +32,6 @@ runs:
         -H "Accept: application/vnd.github+json" \
         -H "Authorization: ${{ inputs.actions-pat-key }}" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
-        https://api.github.com/repos/${{ inputs.gitrepo }}/dispatches \
-        -d '{"event_type":"bump_appversion","client_payload":{"appversion": "${{ inputs.appversion }}", "helmchartdir": "${{ inputs.chartlocation }}"}}'
+        https://api.github.com/repos/${{ inputs.git-repo }}/dispatches \
+        -d '{"event_type":"bump_appversion","client_payload":{"appversion": "${{ inputs.appversion }}", "helmchartdir": "${{ inputs.chart-location }}"}}'
   
