@@ -5,12 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Helm Chart Bump AppVersion - Trigger
     steps:
-    
+
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Build Image #Replicating output of a build pipeline with semver
-        run: IMAGEVERSION=$(echo $(( $RANDOM % 10 + 1 )).$(( $RANDOM % 10 + 1 )).$(( $RANDOM % 10 + 1 )))
+        run: |
+          export IMAGEVERSION=$(echo $(( $RANDOM % 10 + 1 )).$(( $RANDOM % 10 + 1 )).$(( $RANDOM % 10 + 1 )))
+          echo "::set-env name=IMAGEVERSION::$IMAGEVERSION"
 
       - name: Helm Chart Bump AppVersion
         uses: ./ # Uses an action in the root directory for testing
