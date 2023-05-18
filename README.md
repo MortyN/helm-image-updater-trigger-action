@@ -11,7 +11,6 @@ You will need to have the helm-image-updater-action in the target repo in order 
 ## Example usage in Image repo:
 
 ```yaml
-# workflow triggers
 on: [push]
 jobs:
   helm_appversion_bumper_trigger:
@@ -33,7 +32,7 @@ jobs:
           chart-location: charts/bettergrafana/Chart.yaml
           appversion: ${{ env.IMAGEVERSION }}
           actions-pat-key: ${{ secrets.ACTIONS_PAT_KEY }}
-      # Use the output from the `hello` step
+          
       - name: Output
         run: echo "${{ steps.triggerappversionbump.outputs.result }}"
 ```
