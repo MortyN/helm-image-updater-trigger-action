@@ -11,8 +11,7 @@ jobs:
 
       - name: Build Image #Replicating output of a build pipeline with semver
         run: |
-          export IMAGEVERSION=$(echo $(( $RANDOM % 10 + 1 )).$(( $RANDOM % 10 + 1 )).$(( $RANDOM % 10 + 1 )))
-          echo "::set-env name=IMAGEVERSION::$IMAGEVERSION"
+          echo "IMAGEVERSION=$(echo $(( $RANDOM % 10 + 1 )).$(( $RANDOM % 10 + 1 )).$(( $RANDOM % 10 + 1 )))" >> "$GITHUB_ENV"
 
       - name: Helm Chart Bump AppVersion
         uses: ./ # Uses an action in the root directory for testing
