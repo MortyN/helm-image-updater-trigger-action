@@ -1,6 +1,6 @@
 # Helm Chart Image Updater Trigger
 
-This composite github action is used to simplify triggering the MortyN/helm-image-updater-action inside a Helm Chart repo
+This composite github action is used to simplify triggering the [MortyN/helm-image-updater-action](https://github.com/MortyN/helm-image-updater-action) inside a Helm Chart repo
 
 ## Prerequisites
 
